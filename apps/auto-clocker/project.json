@@ -1,23 +1,27 @@
 {
-  "name": "angular",
+  "name": "auto-clocker",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "app",
-  "sourceRoot": "apps/angular/src",
+  "prefix": "t",
+  "sourceRoot": "apps/auto-clocker/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/angular",
-        "index": "apps/angular/src/index.html",
-        "browser": "apps/angular/src/main.ts",
+        "outputPath": "dist/apps/auto-clocker",
+        "index": "apps/auto-clocker/src/index.html",
+        "browser": "apps/auto-clocker/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/angular/tsconfig.app.json",
+        "tsConfig": "apps/auto-clocker/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/angular/src/favicon.ico", "apps/angular/src/assets"],
-        "styles": ["apps/angular/src/styles.scss"],
+        "assets": [
+          "apps/auto-clocker/src/favicon.ico",
+          "apps/auto-clocker/src/assets",
+          "apps/auto-clocker/src/manifest.json"
+        ],
+        "styles": ["apps/auto-clocker/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -48,10 +52,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "angular:build:production"
+          "buildTarget": "auto-clocker:build:production"
         },
         "development": {
-          "buildTarget": "angular:build:development"
+          "buildTarget": "auto-clocker:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -59,18 +63,11 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "angular:build"
+        "buildTarget": "auto-clocker:build"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/angular/jest.config.ts"
-      }
     }
   }
 }
