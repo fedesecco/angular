@@ -9,6 +9,11 @@ export const appRoutes: Route[] = [
         pathMatch: 'full',
     },
     {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+    },
+    {
         path: 'home',
         component: HomeComponent,
     },

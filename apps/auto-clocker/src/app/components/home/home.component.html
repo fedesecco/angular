@@ -1,26 +1,35 @@
 <div class="h-screen w-screen app-bg">
     <div class="flex justify-between w-full p-3">
         <!-- start -->
-        <div class="flex" style="width: 30px"></div>
+        <div class="flex min-w-20">{{ stateService.currentTime() }}</div>
         <!-- middle -->
         <p class="flex text-xl">AutoClocker</p>
         <!-- end -->
-        <div class="flex">
-            <i
-                class="icon-gear clickMe"
-                (click)="router.navigate(['settings'])"
-            ></i>
+        <div class="flex justify-end min-w-20">
+            <i class="icon-gear clickMe" (click)="router.navigate(['settings'])"></i>
         </div>
     </div>
     <div class="flex-col w-full p-3">
-        @for(job of stateService.clockJobs(); track $index){
-        <div class="flex justify-start w-full p-1">
-            <p>
-                {{ job.title }}&nbsp;({{
-                    job.clockTime | date : 'HH:mm'
-                }})&nbsp;-&nbsp;
-            </p>
-        </div>
+        @for (job of stateService.clockJobs(); track $index) {
+            <div class="flex justify-start w-full p-1 align-middle">
+                <p class="flex">
+                    <span class="mr-2">
+                        @switch (stateService.getJobState(job)) {
+                            @case ('unscheduled') {
+                                <i class="icon-clock-x"></i>
+                            }
+                            @case ('scheduled') {
+                                <i class="icon-clock"></i>
+                            }
+                            @case ('done') {
+                                <i class="icon-clock-check"></i>
+                            }
+                            @default {}
+                        }
+                    </span>
+                    {{ job.title }}&nbsp;({{ job.clockTime | date: 'HH:mm' }})&nbsp;-&nbsp;
+                </p>
+            </div>
         }
     </div>
 </div>

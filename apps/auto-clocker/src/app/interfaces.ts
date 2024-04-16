@@ -3,3 +3,9 @@ export interface ClockJob {
     clockTime: Date,
     active: boolean
 }
+
+export enum JobState {
+    'scheduled' = 'scheduled',
+    'unscheduled' = 'unscheduled',
+    'done' = 'done',
+}
