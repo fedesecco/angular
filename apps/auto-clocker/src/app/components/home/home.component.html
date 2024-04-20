@@ -6,28 +6,39 @@
         <p class="flex text-xl">AutoClocker</p>
         <!-- end -->
         <div class="flex justify-end min-w-20">
-            <i class="icon-gear clickMe" (click)="router.navigate(['settings'])"></i>
+            <!-- <i class="icon-gear clickMe" (click)="router.navigate(['settings'])"></i> -->
         </div>
     </div>
     <div class="flex-col w-full p-3">
         @for (job of stateService.clockJobs(); track $index) {
             <div class="flex justify-start w-full p-1 align-middle">
-                <p class="flex">
+                <p class="flex items-center">
                     <span class="mr-2">
                         @switch (stateService.getJobState(job)) {
                             @case ('unscheduled') {
-                                <i class="icon-clock-x"></i>
+                                <i class="icon-clock-x cursor-help" title="Non programmato: questa timbratura verrà ignorata"></i>
                             }
                             @case ('scheduled') {
-                                <i class="icon-clock"></i>
+                                <i
+                                    class="icon-clock cursor-help"
+                                    title="Programmato: sarà timbrato in automatico quando arriverà il momento"
+                                ></i>
                             }
                             @case ('done') {
-                                <i class="icon-clock-check"></i>
+                                <i class="icon-clock-check cursor-help" title="Fatto: timbrato da AutoClocker"></i>
                             }
-                            @default {}
+                            @case ('missed') {
+                                <i
+                                    class="icon-clock-exclamation cursor-help"
+                                    title="Mancato: AutoClocker non era attivo nell'orario di timbratura, oppure la pagina PeopleSmart non era aperta"
+                                ></i>
+                            }
                         }
                     </span>
-                    {{ job.title }}&nbsp;({{ job.clockTime | date: 'HH:mm' }})&nbsp;-&nbsp;
+                    {{ job.title }}&nbsp;({{ job.clockTime | date: 'HH:mm' }})
+                    @if (stateService.isNextScheduled($index)) {
+                        &nbsp;-&nbsp;Previsto fra {{ stateService.getRemainingTime(job) | date: 'HH:mm:ss' }}
+                    }
                 </p>
             </div>
         }
