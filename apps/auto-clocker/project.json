@@ -1,73 +1,69 @@
 {
-  "name": "auto-clocker",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "prefix": "t",
-  "sourceRoot": "apps/auto-clocker/src",
-  "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/apps/auto-clocker",
-        "index": "apps/auto-clocker/src/index.html",
-        "browser": "apps/auto-clocker/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "apps/auto-clocker/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/auto-clocker/src/favicon.ico",
-          "apps/auto-clocker/src/assets",
-          "apps/auto-clocker/src/manifest.json"
-        ],
-        "styles": ["apps/auto-clocker/src/styles.scss"],
-        "scripts": []
-      },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+    "name": "auto-clocker",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "prefix": "t",
+    "sourceRoot": "apps/auto-clocker/src",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@angular-devkit/build-angular:application",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/auto-clocker",
+                "index": "apps/auto-clocker/src/index.html",
+                "browser": "apps/auto-clocker/src/main.ts",
+                "polyfills": ["zone.js"],
+                "tsConfig": "apps/auto-clocker/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
+                "assets": ["apps/auto-clocker/src/favicon.ico", "apps/auto-clocker/src/assets", "apps/auto-clocker/src/manifest.json"],
+                "styles": ["apps/auto-clocker/src/styles.scss"],
+                "scripts": []
             },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+            "configurations": {
+                "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "500kb",
+                            "maximumError": "1mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "2kb",
+                            "maximumError": "4kb"
+                        }
+                    ],
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "optimization": false,
+                    "extractLicenses": false,
+                    "sourceMap": true
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+                "production": {
+                    "buildTarget": "auto-clocker:build:production"
+                },
+                "development": {
+                    "buildTarget": "auto-clocker:build:development"
+                }
+            },
+            "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+                "buildTarget": "auto-clocker:build"
             }
-          ],
-          "outputHashing": "all"
         },
-        "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true
+        "lint": {
+            "executor": "@nx/eslint:lint"
         }
-      },
-      "defaultConfiguration": "production"
-    },
-    "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "configurations": {
-        "production": {
-          "buildTarget": "auto-clocker:build:production"
-        },
-        "development": {
-          "buildTarget": "auto-clocker:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "auto-clocker:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     }
-  }
 }

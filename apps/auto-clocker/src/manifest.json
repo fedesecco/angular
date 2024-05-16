@@ -12,6 +12,6 @@
         "default_title": "Auto Clocker",
         "default_popup": "index.html"
     },
-    "permissions": [],
+    "permissions": ["tabs"],
     "host_permissions": ["*://*/*"]
 }
