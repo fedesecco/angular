@@ -13,5 +13,8 @@
         "default_popup": "index.html"
     },
     "permissions": ["tabs"],
+    "background": {
+        "service_worker": "service-worker.js"
+    },
     "host_permissions": ["*://*/*"]
 }

@@ -24,5 +24,5 @@ export const DEFAULT_STARTING_JOBS = [
         done: false,
     },
 ];
-
 export const SAVED_JOBS = 'AutoClockSavedJobs';
+export const PEOPLE_SMART_URL = 'https://peoplesmart.hrzucchetti.it/psmartmo02022/Content/browser/www/home-new-updated';

@@ -16,7 +16,12 @@
                 "polyfills": ["zone.js"],
                 "tsConfig": "apps/auto-clocker/tsconfig.app.json",
                 "inlineStyleLanguage": "scss",
-                "assets": ["apps/auto-clocker/src/favicon.ico", "apps/auto-clocker/src/assets", "apps/auto-clocker/src/manifest.json"],
+                "assets": [
+                    "apps/auto-clocker/src/favicon.ico",
+                    "apps/auto-clocker/src/assets",
+                    "apps/auto-clocker/src/manifest.json",
+                    "apps/auto-clocker/src/app/service-worker/service-worker.js"
+                ],
                 "styles": ["apps/auto-clocker/src/styles.scss"],
                 "scripts": []
             },
