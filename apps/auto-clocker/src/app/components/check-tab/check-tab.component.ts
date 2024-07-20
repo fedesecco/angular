@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-
-import { fromEventPattern } from 'rxjs';
+import { Component, inject, signal } from '@angular/core';
+import { StateService } from '@services/state.service';
+import { first, fromEventPattern } from 'rxjs';
+import { Tab } from 'src/app/interfaces';
 
 @Component({
     standalone: true,
@@ -9,24 +10,19 @@ import { fromEventPattern } from 'rxjs';
     imports: [],
 })
 export class CheckTabComponent {
-    /* protected test = chrome.runtime.sendMessage({ action: 'checkTab', url: PEOPLE_SMART_URL }, (response) => {
-        if (response.found) {
-            console.log('The tab is open!');
-        } else {
-            console.log('The tab is not open.');
-        }
-    }); */
-
-    protected messages = fromEventPattern(
-        (handler) => {
-            const wrapper = (request, sender, sendResponse) => {
-                const event = { async: false, request, sender, sendResponse };
-                handler(event);
-                return event.async;
-            };
-            chrome.runtime.onMessage.addListener(wrapper);
-            return wrapper;
-        },
-        (handler, wrapper) => chrome.runtime.onMessage.removeListener(wrapper),
-    );
+    private stateService = inject(StateService);
+    protected idk = signal<unknown>(null);
+    constructor() {
+        this.stateService
+            .checkIfTabIsOpen(Tab.Test)
+            .pipe(first())
+            .subscribe({
+                next: (res) => {
+                    this.idk.set(res);
+                },
+                error: (e) => {
+                    this.idk.set(e);
+                },
+            });
+    }
 }

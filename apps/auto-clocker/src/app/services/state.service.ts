@@ -1,6 +1,7 @@
 import { Injectable, computed, effect, signal, untracked } from '@angular/core';
-import { ClockJob, JobState } from '../interfaces';
+import { ClockJob, JobState, Tab } from '../interfaces';
 import { DEFAULT_STARTING_JOBS, SAVED_JOBS } from '../constants';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -73,5 +74,18 @@ export class StateService {
             hours = 0;
         }
         return new Date().setHours(hours, minutes, seconds);
+    }
+
+    public checkIfTabIsOpen(urlFragment: Tab) {
+        return new Observable((observer) => {
+            chrome.runtime.sendMessage({ action: 'checkTab', urlFragment: urlFragment }, (response) => {
+                if (chrome.runtime.lastError) {
+                    observer.error(chrome.runtime.lastError);
+                } else {
+                    observer.next(response);
+                    observer.complete();
+                }
+            });
+        });
     }
 }

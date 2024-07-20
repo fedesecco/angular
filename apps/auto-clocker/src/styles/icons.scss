@@ -3,21 +3,21 @@
     height: 30px;
     display: inline-block;
 }
-.icon-gear {
-    background-image: url('../assets/icons/gear.svg');
-}
-.icon-arrow-back {
-    background-image: url('../assets/icons/arrow-back.svg');
-}
-.icon-clock-check {
-    background-image: url('../assets/icons/clock-check.svg');
-}
-.icon-clock {
-    background-image: url('../assets/icons/clock.svg');
-}
-.icon-clock-x {
-    background-image: url('../assets/icons/clock-x.svg');
-}
-.icon-clock-exclamation {
-    background-image: url('../assets/icons/clock-exclamation.svg');
+
+.icon {
+    &-gear {
+        background-image: url('../assets/icons/gear.svg');
+    }
+    &-arrow-back {
+        background-image: url('../assets/icons/arrow-back.svg');
+    }
+    &-clock-check {
+        background-image: url('../assets/icons/clock-check.svg');
+    }
+    &-clock-x {
+        background-image: url('../assets/icons/clock-x.svg');
+    }
+    &-clock-exclamation {
+        background-image: url('../assets/icons/clock-exclamation.svg');
+    }
 }

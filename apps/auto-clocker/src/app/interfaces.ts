@@ -11,3 +11,8 @@ export enum JobState {
     'done' = 'done',
     'missed' = 'missed',
 }
+
+export enum Tab {
+    Test = 'localhost',
+    PeopleSmart = 'asdsa',
+}
