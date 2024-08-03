@@ -5,5 +5,10 @@
   "global.PlayerName": "Player name",
   "global.player": "player",
   "global.color": "color",
-  "global.timeLeft": "time"
+  "global.timeLeft": "time",
+  "global.secs": "seconds",
+  "settings.totalTime": "Total time",
+  "settings.turnTime": "Time for each turn",
+  "settings.totalTimeLong": "Time is not resetted each turn",
+  "settings.turnTimeLong": "The timer is resetted each turn"
 }

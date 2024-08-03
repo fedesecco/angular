@@ -1,11 +1,13 @@
-import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslocoModule } from '@jsverse/transloco';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { DataService } from '@services/data.service';
+import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslocoModule } from '@jsverse/transloco';
+import { DataService } from '@services/data.service';
+import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
 
 @Component({
     selector: 'app-settings',
@@ -18,6 +20,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
         FormsModule,
         ReactiveFormsModule,
         InputNumberModule,
+        TableModule,
+        InputSwitchModule,
     ],
     templateUrl: './settings.component.html',
     styleUrl: './settings.component.scss',

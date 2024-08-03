@@ -51,7 +51,8 @@
                     "buildTarget": "play-clock:build:production"
                 },
                 "development": {
-                    "buildTarget": "play-clock:build:development"
+                    "buildTarget": "play-clock:build:development",
+                    "host": "0.0.0.0"
                 }
             },
             "defaultConfiguration": "development"

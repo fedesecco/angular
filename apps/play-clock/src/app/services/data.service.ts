@@ -1,12 +1,12 @@
-import { computed, effect, inject, Injectable, signal } from '@angular/core';
-import { Player, PlayerColor } from '../interfaces';
+import { computed, effect, Injectable, signal, untracked } from '@angular/core';
 import { v4 as uuid } from 'uuid';
+import { Player, PlayerColor } from '../interfaces';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DataService {
-    public activePlayers = signal<Player[]>([]);
+    public activePlayers = signal<Player[]>(this.getLocalStorageItem('activePlayers', []));
     public readonly allColors = Object.values(PlayerColor);
     public unusedColors = computed(() => {
         let result = [...this.allColors];
@@ -17,13 +17,27 @@ export class DataService {
                     .includes(i),
         );
     });
+    public globalTime = signal(this.getLocalStorageItem('globalTime', true));
 
     constructor() {
         effect(() => {
-            console.log('activePlayers changed: ', this.activePlayers());
+            this.activePlayers();
+
+            untracked(() => {
+                console.log('activePlayers changed: ', this.activePlayers());
+                localStorage.setItem('activePlayers', JSON.stringify(this.activePlayers()));
+            });
         });
         effect(() => {
             console.log('unusedColors changed: ', this.unusedColors());
+        });
+        effect(() => {
+            this.globalTime();
+
+            untracked(() => {
+                console.log('globalTime changed: ', this.globalTime());
+                localStorage.setItem('globalTime', JSON.stringify(this.globalTime()));
+            });
         });
     }
 
@@ -36,6 +50,9 @@ export class DataService {
                 id: uuid(),
             },
         ]);
+    }
+    public removePlayer(index: number) {
+        this.activePlayers.update((p) => p.filter((_, i) => index != i));
     }
     public nextColor(color: PlayerColor) {
         if (this.unusedColors().length) {
@@ -53,5 +70,12 @@ export class DataService {
         player.color = this.nextColor(player.color);
         players[index] = player;
         this.activePlayers.set([...players]);
+    }
+
+    private getLocalStorageItem(item: string, valueIfNotPresent: boolean | string | Array<any> | Object) {
+        const itemFromStorage = localStorage.getItem(item);
+        if (itemFromStorage) {
+            return JSON.parse(itemFromStorage);
+        } else return valueIfNotPresent;
     }
 }
