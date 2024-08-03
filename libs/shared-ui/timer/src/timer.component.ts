@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'lib-timer',
+    selector: 'fs-timer',
     standalone: true,
     imports: [CommonModule],
     templateUrl: './timer.component.html',

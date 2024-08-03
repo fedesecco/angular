@@ -2,11 +2,6 @@
     "name": "@angular/source",
     "version": "0.0.0",
     "license": "MIT",
-    "scripts": {
-        "start-pst": "npx nx run ps-test:serve",
-        "start-ac": "npx nx run auto-clocker:serve",
-        "build-ac": "npx nx run auto-clocker:build"
-    },
     "private": true,
     "dependencies": {
         "@angular/animations": "~17.2.0",
