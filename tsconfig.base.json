@@ -15,7 +15,8 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "fsecco": ["libs/shared-ui/src/index.ts"]
+            "fsecco": ["libs/shared-ui/src/index.ts"],
+            "fsecco/timer": ["libs/shared-ui/timer/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]
