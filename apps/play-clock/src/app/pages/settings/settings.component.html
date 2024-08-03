@@ -1,3 +1,41 @@
-<div class="h-dvh w-dvh flex flex-col">
-    <p>{{ 'global.Players' | transloco }}</p>
+<div class="w-dvw h-dvh flex flex-col p-5">
+    <p>{{ 'global.Players' | transloco }}: {{ dataService.activePlayers().length }}</p>
+    <div class="w-full flex flex-col items-center mt-4 justify-center">
+        @if (dataService.activePlayers().length) {
+            <div class="w-full flex justify-between">
+                <span>{{ 'global.player' | transloco }}</span>
+                <span>{{ 'global.color' | transloco }}</span>
+                <span>{{ 'global.timeLeft' | transloco }}</span>
+            </div>
+        }
+        @for (player of dataService.activePlayers(); track player.id) {
+            <div class="w-full flex mb-4 justify-between">
+                <input
+                    class="w-20"
+                    type="text"
+                    pInputText
+                    [(ngModel)]="player.name"
+                    [placeholder]="'global.PlayerName' | transloco"
+                />
+                <div
+                    class="w-8 h-8 rounded-full border border-black"
+                    [style.backgroundColor]="player.color"
+                    (click)="dataService.changePlayerColor($index)"
+                ></div>
+                <p-inputNumber
+                    class="w-20"
+                    [(ngModel)]="player.timer"
+                    mode="decimal"
+                    inputId="withoutgrouping"
+                    [useGrouping]="false"
+                />
+            </div>
+        }
+        <p-button
+            icon="pi pi-plus"
+            rounded
+            class="bg-green-400 rounded-full border border-black"
+            (onClick)="dataService.addPlayer()"
+        />
+    </div>
 </div>

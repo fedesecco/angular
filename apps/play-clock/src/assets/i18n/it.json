@@ -1,3 +1,9 @@
 {
-  "global.Players": "Giocatori"
+  "global.Players": "Giocatori",
+  "global.name": "nome",
+  "global.Name": "Nome",
+  "global.PlayerName": "Nome del giocatore",
+  "global.player": "giocatore",
+  "global.color": "colore",
+  "global.timeLeft": "tempo"
 }

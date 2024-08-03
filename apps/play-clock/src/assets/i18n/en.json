@@ -1,3 +1,9 @@
 {
-  "global.Players": "Players"
+  "global.Players": "Players",
+  "global.name": "name",
+  "global.Name": "Name",
+  "global.PlayerName": "Player name",
+  "global.player": "player",
+  "global.color": "color",
+  "global.timeLeft": "time"
 }
