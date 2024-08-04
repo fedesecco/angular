@@ -1,0 +1,16 @@
+{
+  "global.Players": "Giocatori",
+  "global.name": "nome",
+  "global.Name": "Nome",
+  "global.PlayerName": "Nome",
+  "global.player": "giocatore",
+  "global.color": "colore",
+  "global.timeLeft": "tempo",
+  "global.secs": "secondi",
+  "settings.totalTime": "Tempo totale",
+  "settings.turnTime": "Tempo di ogni turno",
+  "settings.totalTimeLong": "Il tempo non viene resettato ad ogni turno",
+  "settings.turnTimeLong": "Il tempo si resetta ogni turno",
+  "global.proceed": "Inizia",
+  "global.nextPlayer": "Prossimo giocatore: {{name}}"
+}

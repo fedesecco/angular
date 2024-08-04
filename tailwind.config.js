@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ['./apps/auto-clocker/src/**/*.{html,ts}'],
+    content: ['./apps/**/src/**/*.{html,ts}'],
     theme: {
         extend: {},
     },
