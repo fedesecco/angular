@@ -10,7 +10,8 @@
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "paths": {
-            "@services/*": ["apps/play-clock/src/app/services/*"]
+            "@services/*": ["apps/play-clock/src/app/services/*"],
+            "@functions": ["apps/play-clock/src/app/functions"]
         }
     },
     "files": [],

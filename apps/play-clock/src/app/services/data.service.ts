@@ -17,7 +17,25 @@ export class DataService {
                     .includes(i),
         );
     });
-    public globalTime = signal(this.getLocalStorageItem('globalTime', true));
+    public globalTime = signal<boolean>(this.getLocalStorageItem('globalTime', true));
+    public playerPlayingIndex = signal<number | null>(null);
+    public currentPlayer = computed(() => {
+        if (this.playerPlayingIndex() === null) {
+            return null;
+        } else return this.activePlayers()[this.playerPlayingIndex()!];
+    });
+    public nextPlayerIndex = computed(() => {
+        if (this.playerPlayingIndex() === null) {
+            return null;
+        } else if (this.playerPlayingIndex() === this.activePlayers().length - 1) {
+            return 0;
+        } else return this.playerPlayingIndex()! + 1;
+    });
+    public nextPlayer = computed(() => {
+        if (this.nextPlayerIndex() === null) {
+            return null;
+        } else return this.activePlayers()[this.nextPlayerIndex()!];
+    });
 
     constructor() {
         effect(() => {
@@ -38,6 +56,9 @@ export class DataService {
                 console.log('globalTime changed: ', this.globalTime());
                 localStorage.setItem('globalTime', JSON.stringify(this.globalTime()));
             });
+        });
+        effect(() => {
+            console.log('currentPlayer changed: ', this.currentPlayer());
         });
     }
 
@@ -72,7 +93,7 @@ export class DataService {
         this.activePlayers.set([...players]);
     }
 
-    private getLocalStorageItem(item: string, valueIfNotPresent: boolean | string | Array<any> | Object) {
+    private getLocalStorageItem(item: string, valueIfNotPresent: number | boolean | string | Array<any> | Object) {
         const itemFromStorage = localStorage.getItem(item);
         if (itemFromStorage) {
             return JSON.parse(itemFromStorage);

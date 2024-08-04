@@ -12,6 +12,10 @@ export const appRoutes: Route[] = [
         component: SettingsComponent,
     },
     {
+        path: 'play',
+        loadComponent: () => import('./pages/play/play.component').then((m) => m.PlayComponent),
+    },
+    {
         path: '**',
         redirectTo: 'settings',
         pathMatch: 'full',

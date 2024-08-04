@@ -1,5 +1,14 @@
-<div class="w-dvw h-dvh flex flex-col p-5">
-    <p>{{ 'global.Players' | transloco }}: {{ dataService.activePlayers().length }}</p>
+<div class="w-full h-full flex flex-col">
+    <div class="flex w-full align-middle justify-between">
+        <p>{{ 'global.Players' | transloco }}: {{ dataService.activePlayers().length }}</p>
+        <p-button
+            [label]="'global.proceed' | transloco"
+            severity="success"
+            [disabled]="pageNotReady()"
+            (onClick)="onReadyClick()"
+        />
+    </div>
+
     <div class="w-full mt-4 flex align-middle justify-start">
         <p-inputSwitch
             class="ml-3"

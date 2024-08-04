@@ -10,5 +10,7 @@
   "settings.totalTime": "Total time",
   "settings.turnTime": "Time for each turn",
   "settings.totalTimeLong": "Time is not resetted each turn",
-  "settings.turnTimeLong": "The timer is resetted each turn"
+  "settings.turnTimeLong": "The timer is resetted each turn",
+  "global.proceed": "Start",
+  "global.nextPlayer": "Next player: {{name}}"
 }
