@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, shareReplay, switchMap } from 'rxjs';
 import { RedditApiService } from './reddit-api.service';
 
 @Injectable({
@@ -20,6 +20,7 @@ export class DataService {
                 });
                 return this.http.get(`https://oauth.reddit.com/best?limit=100`, { headers });
             }),
+            shareReplay(1),
         );
     }
 

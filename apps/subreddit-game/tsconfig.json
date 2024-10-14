@@ -6,9 +6,16 @@
         "forceConsistentCasingInFileNames": true,
         "strict": true,
         "noImplicitOverride": true,
-        "noPropertyAccessFromIndexSignature": true,
+        "noPropertyAccessFromIndexSignature": false,
         "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+        "baseUrl": "./",
+        "paths": {
+            "@app/*": ["src/app/*"],
+            "@shared/*": ["src/app/shared/*"],
+            "@services/*": ["src/app/services/*"],
+            "@pages/*": ["src/app/pages/*"]
+        }
     },
     "files": [],
     "include": [],
