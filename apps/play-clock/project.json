@@ -10,10 +10,7 @@
             "executor": "@angular-devkit/build-angular:application",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "outputPath": {
-                    "base": "dist/apps/play-clock",
-                    "browser": ""
-                },
+                "outputPath": "dist/apps/play-clock",
                 "index": "apps/play-clock/src/index.html",
                 "browser": "apps/play-clock/src/main.ts",
                 "polyfills": ["zone.js"],
