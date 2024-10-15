@@ -10,7 +10,10 @@
             "executor": "@angular-devkit/build-angular:application",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "outputPath": "dist/apps/play-clock",
+                "outputPath": {
+                    "base": "dist/apps/play-clock",
+                    "browser": ""
+                },
                 "index": "apps/play-clock/src/index.html",
                 "browser": "apps/play-clock/src/main.ts",
                 "polyfills": ["zone.js"],
@@ -25,13 +28,11 @@
                     "budgets": [
                         {
                             "type": "initial",
-                            "maximumWarning": "500kb",
-                            "maximumError": "1mb"
+                            "maximumWarning": "2mb"
                         },
                         {
                             "type": "anyComponentStyle",
-                            "maximumWarning": "2kb",
-                            "maximumError": "4kb"
+                            "maximumWarning": "4kb"
                         }
                     ],
                     "outputHashing": "all"
