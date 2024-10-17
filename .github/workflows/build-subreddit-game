@@ -1,0 +1,28 @@
+name: Build subreddit-game app
+
+on:
+  push:
+    paths:
+      - 'apps/subreddit-game/**'
+  pull_request:
+    paths:
+      - 'apps/subreddit-game/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build subreddit-game
+        run: npx nx run subreddit-game:build
