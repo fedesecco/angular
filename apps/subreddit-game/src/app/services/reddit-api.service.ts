@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { RedditApiObj } from '@fsecco/shared-ui/reddit-interfaces';
 import { env } from '@shared/constants';
 import { Observable, shareReplay } from 'rxjs';
 

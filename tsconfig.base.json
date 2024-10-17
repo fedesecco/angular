@@ -15,7 +15,8 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@fsecco/shared-ui": ["libs/shared-ui/src/index.ts"]
+            "@fsecco/shared-ui": ["/libs/shared-ui/src/index.ts"],
+            "@fsecco/shared-ui/reddit-interfaces": ["/libs/shared-ui/reddit-interfaces"]
         }
     },
     "exclude": ["node_modules", "tmp"]
