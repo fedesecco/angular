@@ -9,7 +9,7 @@ import { Observable, shareReplay } from 'rxjs';
 export class RedditApiService {
     private readonly http = inject(HttpClient);
 
-    getAppOnlyToken(): Observable<any> {
+    getAppOnlyToken(): Observable<RedditApiObj> {
         const body = 'grant_type=client_credentials';
         const headers = new HttpHeaders({
             Authorization: `Basic ${btoa(`${env.REDDIT_CLIENT_ID}:${env.REDDIT_CLIENT_SECRET}`)}`,
