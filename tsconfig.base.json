@@ -16,6 +16,7 @@
         "baseUrl": ".",
         "paths": {
             "@fsecco": ["libs/shared-ui/src/index.ts"],
+            "@fsecco/shared-ui": ["libs/shared-ui/src/index.ts"],
             "@fsecco/timer": ["libs/shared-ui/timer/src/index.ts"]
         }
     },
