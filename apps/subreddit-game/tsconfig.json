@@ -9,17 +9,8 @@
         "noImplicitOverride": true,
         "noPropertyAccessFromIndexSignature": false,
         "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "baseUrl": "./",
-        "paths": {
-            "@app/*": ["src/app/*"],
-            "@shared/*": ["src/app/shared/*"],
-            "@services/*": ["src/app/services/*"],
-            "@pages/*": ["src/app/pages/*"]
-        }
+        "noFallthroughCasesInSwitch": true
     },
-    "files": [],
-    "include": [],
     "references": [
         {
             "path": "./tsconfig.editor.json"

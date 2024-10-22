@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { SharedUiComponent } from '@fsecco/shared-ui';
 import { RedditApiObj } from '@fsecco/shared-ui/reddit-interfaces';
-import { env } from '@shared/constants';
+import { env } from '@subredditgame/shared/constants';
 import { Observable, shareReplay } from 'rxjs';
 
 @Injectable({
@@ -9,6 +10,7 @@ import { Observable, shareReplay } from 'rxjs';
 })
 export class RedditApiService {
     private readonly http = inject(HttpClient);
+    private hello = SharedUiComponent;
 
     getAppOnlyToken(): Observable<RedditApiObj> {
         const body = 'grant_type=client_credentials';
@@ -16,6 +18,8 @@ export class RedditApiService {
             Authorization: `Basic ${btoa(`${env.REDDIT_CLIENT_ID}:${env.REDDIT_CLIENT_SECRET}`)}`,
             'Content-Type': 'application/x-www-form-urlencoded',
         });
-        return this.http.post('https://www.reddit.com/api/v1/access_token', body, { headers }).pipe(shareReplay(1));
+        return this.http
+            .post<RedditApiObj>('https://www.reddit.com/api/v1/access_token', body, { headers })
+            .pipe(shareReplay(1));
     }
 }
