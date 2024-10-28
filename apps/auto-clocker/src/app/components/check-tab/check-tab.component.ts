@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { StateService } from '@services/state.service';
-import { first, fromEventPattern } from 'rxjs';
+import { first } from 'rxjs';
 import { Tab } from 'src/app/interfaces';
 
 @Component({
