@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DataService } from './services/data.service';
 
 @Component({
     standalone: true,
@@ -9,6 +8,4 @@ import { DataService } from './services/data.service';
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
 })
-export class AppComponent {
-    private aa = inject(DataService);
-}
+export class AppComponent {}

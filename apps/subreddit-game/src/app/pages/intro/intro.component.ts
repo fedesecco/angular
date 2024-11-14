@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'sr-intro',
@@ -7,6 +7,5 @@ import { CommonModule } from '@angular/common';
     imports: [CommonModule],
     templateUrl: './intro.component.html',
     styleUrl: './intro.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IntroComponent {}
