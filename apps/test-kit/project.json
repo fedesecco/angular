@@ -1,0 +1,74 @@
+{
+    "name": "test-kit",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "prefix": "tk",
+    "sourceRoot": "apps/test-kit/src",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@angular-devkit/build-angular:application",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/test-kit",
+                "index": "apps/test-kit/src/index.html",
+                "browser": "apps/test-kit/src/main.ts",
+                "polyfills": ["zone.js"],
+                "tsConfig": "apps/test-kit/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
+                "assets": [
+                    {
+                        "glob": "**/*",
+                        "input": "apps/test-kit/public"
+                    }
+                ],
+                "styles": ["apps/test-kit/src/styles.scss"],
+                "scripts": []
+            },
+            "configurations": {
+                "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "500kb",
+                            "maximumError": "1mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "2kb",
+                            "maximumError": "4kb"
+                        }
+                    ],
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "optimization": false,
+                    "extractLicenses": false,
+                    "sourceMap": true
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+                "production": {
+                    "buildTarget": "test-kit:build:production"
+                },
+                "development": {
+                    "buildTarget": "test-kit:build:development"
+                }
+            },
+            "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+                "buildTarget": "test-kit:build"
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint"
+        }
+    }
+}
