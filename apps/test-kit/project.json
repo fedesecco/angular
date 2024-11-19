@@ -20,10 +20,17 @@
                     {
                         "glob": "**/*",
                         "input": "apps/test-kit/public"
-                    }
+                    },
+                    "apps/test-kit/src/manifest.json"
                 ],
                 "styles": ["apps/test-kit/src/styles.scss"],
-                "scripts": []
+                "outputHashing": "none",
+                "scripts": [],
+                "optimization": {
+                    "styles": {
+                        "inlineCritical": false
+                    }
+                }
             },
             "configurations": {
                 "production": {

@@ -1,0 +1,14 @@
+{
+    "name": "TestKit",
+    "version": "1.0",
+    "description": "A series of tools to ease the automated testing experience from the browser",
+    "manifest_version": 3,
+    "permissions": ["activeTab", "webNavigation", "storage", "scripting"],
+    "background": {
+        "service_worker": "background.js",
+        "type": "module"
+    },
+    "action": {
+        "default_popup": "index.html"
+    }
+}
