@@ -10,7 +10,10 @@
             "executor": "@angular-devkit/build-angular:application",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "outputPath": "dist/apps/test-kit",
+                "outputPath": {
+                    "base": "dist/apps/test-kit",
+                    "browser": ""
+                },
                 "index": "apps/test-kit/src/index.html",
                 "browser": "apps/test-kit/src/main.ts",
                 "polyfills": ["zone.js"],
@@ -27,9 +30,12 @@
                 "outputHashing": "none",
                 "scripts": [],
                 "optimization": {
+                    "scripts": true,
                     "styles": {
+                        "minify": true,
                         "inlineCritical": false
-                    }
+                    },
+                    "fonts": false
                 }
             },
             "configurations": {
@@ -46,7 +52,7 @@
                             "maximumError": "4kb"
                         }
                     ],
-                    "outputHashing": "all"
+                    "outputHashing": "none"
                 },
                 "development": {
                     "optimization": false,
