@@ -16,7 +16,7 @@
                 },
                 "index": "apps/test-kit/src/index.html",
                 "browser": "apps/test-kit/src/main.ts",
-                "polyfills": ["zone.js"],
+                "polyfills": [],
                 "tsConfig": "apps/test-kit/tsconfig.app.json",
                 "inlineStyleLanguage": "scss",
                 "assets": [
