@@ -4,7 +4,7 @@
         "outDir": "../../dist/out-tsc",
         "types": ["chrome"]
     },
-    "files": ["src/main.ts", "src/background.ts"],
+    "files": ["src/main.ts"],
     "include": ["src/**/*.d.ts"],
-    "exclude": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts", "src/background.ts"]
+    "exclude": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts"]
 }

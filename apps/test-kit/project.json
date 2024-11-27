@@ -27,16 +27,7 @@
                     "apps/test-kit/src/manifest.json"
                 ],
                 "styles": ["apps/test-kit/src/styles.scss"],
-                "outputHashing": "none",
-                "scripts": [],
-                "optimization": {
-                    "scripts": true,
-                    "styles": {
-                        "minify": true,
-                        "inlineCritical": false
-                    },
-                    "fonts": false
-                }
+                "scripts": []
             },
             "configurations": {
                 "production": {
