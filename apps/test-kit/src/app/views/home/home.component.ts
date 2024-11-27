@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
     selector: 'tk-home',
@@ -8,4 +9,6 @@ import { CommonModule } from '@angular/common';
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+    protected sharedServ = inject(SharedService);
+}
