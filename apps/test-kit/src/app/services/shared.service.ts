@@ -4,8 +4,6 @@ import { Injectable } from '@angular/core';
     providedIn: 'root',
 })
 export class SharedService {
-    private readonly addedClass = 'floating-rect-marker';
-
     public showTestIds() {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             const activeTab = tabs[0];
@@ -33,11 +31,12 @@ export class SharedService {
 
 function addElements() {
     const elementsWithTestId = document.querySelectorAll('[data-testid]');
-    alert('ewrtew');
     elementsWithTestId.forEach((el) => {
+        const testIdValue = el.getAttribute('data-testid');
+
         const rect = document.createElement('div');
-        rect.className = 'floating-rect-marker';
-        rect.textContent = el.getAttribute('data-testid');
+        rect.className = 'testkit-testID-display';
+        rect.textContent = testIdValue;
         rect.style.position = 'absolute';
         rect.style.backgroundColor = 'red';
         rect.style.color = 'white';
@@ -51,20 +50,25 @@ function addElements() {
         rect.style.opacity = '0.8';
 
         const rectBounds = el.getBoundingClientRect();
+        const rectWidth = rect.offsetWidth;
+        const viewportWidth = window.innerWidth;
+        if (rectBounds.right + 10 + rectWidth > viewportWidth) {
+            rect.style.left = `${window.scrollX + rectBounds.left - rectWidth - 10}px`;
+        } else {
+            rect.style.left = `${window.scrollX + rectBounds.right + 10}px`;
+        }
         rect.style.top = `${window.scrollY + rectBounds.top}px`;
-        rect.style.left = `${window.scrollX + rectBounds.right + 10}px`;
 
         rect.addEventListener('click', (event) => {
             event.stopPropagation();
             event.preventDefault();
 
-            const dataTestId = el.getAttribute('data-testid');
-            if (dataTestId) {
-                navigator.clipboard.writeText(dataTestId).then(() => {
+            if (testIdValue) {
+                navigator.clipboard.writeText(testIdValue).then(() => {
                     rect.textContent = 'Copied!';
                     setTimeout(() => {
-                        rect.textContent = 'Copy ID';
-                    }, 1000);
+                        rect.textContent = testIdValue;
+                    }, 500);
                 });
             }
         });
@@ -74,6 +78,6 @@ function addElements() {
 }
 
 function removeElements() {
-    const markers = document.querySelectorAll(`.${'floating-rect-marker'}`);
+    const markers = document.querySelectorAll(`.${'testkit-testID-display'}`);
     markers.forEach((marker) => marker.remove());
 }
