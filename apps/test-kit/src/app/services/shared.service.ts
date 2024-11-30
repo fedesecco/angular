@@ -1,9 +1,25 @@
-import { Injectable } from '@angular/core';
+import { effect, Injectable, signal, untracked } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TypedLocalStorage } from '../shared/interfaces';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SharedService {
+    public readonly idAttrSelector = signal(TypedLocalStorage.get('idAttrSelector') ?? 'data-testid');
+    public readonly idAttrCtrl = new FormControl(this.idAttrSelector());
+
+    constructor() {
+        effect(() => {
+            this.idAttrSelector();
+
+            untracked(() => {
+                TypedLocalStorage.set('idAttrSelector', this.idAttrSelector());
+                console.debug('idAttrSelector changed: ', this.idAttrSelector());
+            });
+        });
+    }
+
     public showTestIds() {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             const activeTab = tabs[0];

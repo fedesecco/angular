@@ -1,2 +1,9 @@
-<button (click)="sharedServ.showTestIds()">ADD</button>
-<button (click)="sharedServ.hideTestIds()">REMOVE</button>
+<div class="flex w-full h-full">
+    <div class="flex flex-column gap-2">
+        <label for="username">Attribute to display</label>
+        <input pInputText id="username" [formControl]="sharedServ.idAttrCtrl" />
+    </div>
+
+    <button (click)="sharedServ.showTestIds()">ADD</button>
+    <button (click)="sharedServ.hideTestIds()">REMOVE</button>
+</div>
