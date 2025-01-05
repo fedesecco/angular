@@ -1,7 +1,6 @@
 import { Component, signal } from '@angular/core';
 
 @Component({
-    standalone: true,
     imports: [],
     selector: 'pst-counter',
     template: `
@@ -9,7 +8,7 @@ import { Component, signal } from '@angular/core';
             <ng-content></ng-content>
         </div>
         <span>Cliccato {{ counter() }} volte</span>
-    `,
+    `
 })
 export class CounterComponent {
     protected counter = signal(0);

@@ -4,10 +4,9 @@ import { first, fromEventPattern } from 'rxjs';
 import { Tab } from 'src/app/interfaces';
 
 @Component({
-    standalone: true,
     selector: 't-check-tab',
     templateUrl: './check-tab.component.html',
-    imports: [],
+    imports: []
 })
 export class CheckTabComponent {
     private stateService = inject(StateService);
