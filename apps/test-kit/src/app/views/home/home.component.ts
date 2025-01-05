@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
-import { interval } from 'rxjs';
 import { SharedService } from '../../services/shared.service';
 
 @Component({
@@ -16,12 +15,4 @@ import { SharedService } from '../../services/shared.service';
 })
 export class HomeComponent {
     protected sharedServ = inject(SharedService);
-    protected tot = signal(0);
-    constructor() {
-        interval(100).subscribe({
-            next: () => {
-                this.tot.set(this.tot() + 5);
-            },
-        });
-    }
 }
