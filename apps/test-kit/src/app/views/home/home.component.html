@@ -1,9 +1,16 @@
-<div class="flex w-full h-full">
+<div class="flex flex-col w-full h-full p-2">
     <div class="flex flex-column gap-2">
         <label for="username">Attribute to display</label>
         <input pInputText id="username" [formControl]="sharedServ.idAttrCtrl" />
     </div>
+    <div class="flex flex-column gap-2">
+        <p-button label="Show elements" (click)="sharedServ.showTestIds()" />
+    </div>
+</div>
 
-    <button (click)="sharedServ.showTestIds()">ADD</button>
-    <button (click)="sharedServ.hideTestIds()">REMOVE</button>
+<div class="fra-menu">
+    <div>Staders a cena</div>
+    <div>pasta 5€</div>
+    <p-button label="Compra" (click)="tot.set(tot() + 5)" />
+    <div>TOT: {{ tot() }}</div>
 </div>

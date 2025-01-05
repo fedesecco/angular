@@ -1,10 +1,21 @@
 @import 'primeng/resources/themes/mdc-light-deeppurple/theme.css';
 @import 'primeng/resources/primeng.css';
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 html {
     font-size: 16px;
     font-family: 'Roboto';
 }
+
+/* @layer tailwind-base, primeng, tailwind-utilities;
+
+@layer tailwind-base {
+    @tailwind base;
+}
+
+@layer tailwind-utilities {
+    @tailwind components;
+    @tailwind utilities;
+} */
