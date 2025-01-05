@@ -5,10 +5,9 @@ import { StateService } from '@services/state.service';
 import { CheckTabComponent } from '../check-tab/check-tab.component';
 
 @Component({
-    standalone: true,
     selector: 't-home',
     templateUrl: './home.component.html',
-    imports: [CommonModule, CheckTabComponent],
+    imports: [CommonModule, CheckTabComponent]
 })
 export class HomeComponent {
     protected router = inject(Router);
