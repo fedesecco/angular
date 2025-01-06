@@ -1,0 +1,16 @@
+{
+    "name": "TestKit",
+    "version": "1.0",
+    "description": "A series of tools to ease the automated testing experience from the browser",
+    "manifest_version": 3,
+    "permissions": ["activeTab", "scripting"],
+    "host_permissions": ["<all_urls>"],
+    "action": {
+        "default_popup": "index.html",
+        "default_icon": "test-kit.ico"
+    },
+    "content_security_policy": {
+        "script-src": ["'self'", "'unsafe-eval'"],
+        "object-src": "'self'"
+    }
+}
