@@ -32,10 +32,10 @@
             "optimization": {
                 "scripts": true,
                 "styles": {
-                    "minify": false,
+                    "minify": true,
                     "inlineCritical": false
                 },
-                "fonts": false
+                "fonts": true
             },
             "configurations": {
                 "production": {
@@ -51,7 +51,15 @@
                             "maximumError": "4kb"
                         }
                     ],
-                    "outputHashing": "none"
+                    "outputHashing": "none",
+                    "optimization": {
+                        "scripts": true,
+                        "styles": {
+                            "minify": true,
+                            "inlineCritical": false
+                        },
+                        "fonts": true
+                    }
                 },
                 "development": {
                     "optimization": false,
