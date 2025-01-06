@@ -29,6 +29,14 @@
                 "styles": ["apps/test-kit/src/styles.scss"],
                 "scripts": []
             },
+            "optimization": {
+                "scripts": true,
+                "styles": {
+                    "minify": false,
+                    "inlineCritical": false
+                },
+                "fonts": false
+            },
             "configurations": {
                 "production": {
                     "budgets": [

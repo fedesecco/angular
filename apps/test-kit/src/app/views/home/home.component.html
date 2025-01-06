@@ -1,10 +1,11 @@
 <tk-header></tk-header>
 <div class="flex flex-col w-full h-full p-2">
-    <div class="flex flex-column gap-2">
-        <label for="username">Attribute to display</label>
+    <div class="flex flex-column gap-2 items-center">
+        <label for="username">Attribute to display:</label>
         <input pInputText id="username" [formControl]="sharedServ.idAttrCtrl" />
     </div>
-    <div class="flex flex-column gap-2">
+    <div class="flex flex-column gap-2 items-center justify-center mt-7">
         <p-button label="Show elements" (click)="sharedServ.showTestIds()" />
+        <p-button label="Hide elements" severity="danger" (click)="sharedServ.hideTestIds()" />
     </div>
 </div>

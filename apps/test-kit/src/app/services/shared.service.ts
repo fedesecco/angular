@@ -1,13 +1,25 @@
-import { effect, Injectable, signal, untracked } from '@angular/core';
+import { effect, Injectable, untracked } from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs';
+import { DEFAULT_DEBOUNCE_TIME } from '../shared/constants';
 import { TypedLocalStorage } from '../shared/interfaces';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SharedService {
-    public readonly idAttrSelector = signal(TypedLocalStorage.get('idAttrSelector') ?? 'data-testid');
-    public readonly idAttrCtrl = new FormControl(this.idAttrSelector());
+    public readonly idAttrCtrl = new FormControl(TypedLocalStorage.get('idAttrSelector') ?? 'data-testid');
+    public readonly idAttrSelector = toSignal(
+        this.idAttrCtrl.valueChanges.pipe(
+            takeUntilDestroyed(),
+            startWith(this.idAttrCtrl.value),
+            debounceTime(DEFAULT_DEBOUNCE_TIME),
+            distinctUntilChanged(),
+            map((v) => v ?? ''),
+        ),
+        { initialValue: '' },
+    );
 
     constructor() {
         effect(() => {
