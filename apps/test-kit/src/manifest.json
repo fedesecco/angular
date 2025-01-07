@@ -7,10 +7,19 @@
     "host_permissions": ["<all_urls>"],
     "action": {
         "default_popup": "index.html",
-        "default_icon": "test-kit.ico"
+        "default_icon": {
+            "16": "logo_16.png",
+            "48": "logo_48.png",
+            "128": "logo_128.png"
+        }
     },
     "content_security_policy": {
         "script-src": ["'self'", "'unsafe-eval'"],
         "object-src": "'self'"
+    },
+    "icons": {
+        "16": "logo_16.png",
+        "48": "logo_48.png",
+        "128": "logo_128.png"
     }
 }
