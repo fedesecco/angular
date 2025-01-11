@@ -10,10 +10,9 @@ import { filter, interval, startWith, withLatestFrom } from 'rxjs';
 
 @Component({
     selector: 'app-play',
-    standalone: true,
     imports: [CommonModule, ButtonModule, TranslocoModule],
     templateUrl: './play.component.html',
-    styleUrl: './play.component.scss',
+    styleUrl: './play.component.scss'
 })
 export class PlayComponent implements OnDestroy {
     private router = inject(Router);

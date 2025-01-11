@@ -12,7 +12,6 @@ import { TableModule } from 'primeng/table';
 
 @Component({
     selector: 'app-settings',
-    standalone: true,
     imports: [
         CommonModule,
         TranslocoModule,
@@ -25,7 +24,7 @@ import { TableModule } from 'primeng/table';
         InputSwitchModule,
     ],
     templateUrl: './settings.component.html',
-    styleUrl: './settings.component.scss',
+    styleUrl: './settings.component.scss'
 })
 export class SettingsComponent {
     protected dataService = inject(DataService);
