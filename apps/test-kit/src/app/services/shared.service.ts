@@ -1,7 +1,7 @@
 import { effect, Injectable, untracked } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { DEFAULT_DEBOUNCE_TIME } from '../shared/constants';
 import { TypedLocalStorage } from '../shared/interfaces';
 
@@ -9,16 +9,16 @@ import { TypedLocalStorage } from '../shared/interfaces';
     providedIn: 'root',
 })
 export class SharedService {
-    public readonly idAttrCtrl = new FormControl(TypedLocalStorage.get('idAttrSelector') ?? 'data-testid');
+    public readonly idAttrCtrl = new FormControl(TypedLocalStorage.get('idAttrSelector') ?? 'data-testid', {
+        nonNullable: true,
+    });
     public readonly idAttrSelector = toSignal(
         this.idAttrCtrl.valueChanges.pipe(
             takeUntilDestroyed(),
-            startWith(this.idAttrCtrl.value),
             debounceTime(DEFAULT_DEBOUNCE_TIME),
             distinctUntilChanged(),
-            map((v) => v ?? ''),
         ),
-        { initialValue: '' },
+        { initialValue: this.idAttrCtrl.value },
     );
 
     constructor() {
@@ -60,48 +60,61 @@ export class SharedService {
 function addElements() {
     const elementsWithTestId = document.querySelectorAll('[data-testid]');
     elementsWithTestId.forEach((el) => {
-        const testIdValue = el.getAttribute('data-testid');
-
-        const rect = document.createElement('div');
-        rect.className = 'testkit-testID-display';
-        rect.textContent = testIdValue;
-        rect.style.position = 'absolute';
-        rect.style.backgroundColor = 'red';
-        rect.style.color = 'white';
-        rect.style.padding = '5px 10px';
-        rect.style.borderRadius = '4px';
-        rect.style.fontSize = '12px';
-        rect.style.cursor = 'pointer';
-        rect.style.zIndex = '9999';
-        rect.style.pointerEvents = 'auto';
-        rect.style.transition = 'opacity 0.2s';
-        rect.style.opacity = '0.8';
-
         const rectBounds = el.getBoundingClientRect();
-        const rectWidth = rect.offsetWidth;
-        const viewportWidth = window.innerWidth;
-        if (rectBounds.right + 10 + rectWidth > viewportWidth) {
-            rect.style.left = `${window.scrollX + rectBounds.left - rectWidth - 10}px`;
-        } else {
-            rect.style.left = `${window.scrollX + rectBounds.right + 10}px`;
-        }
-        rect.style.top = `${window.scrollY + rectBounds.top}px`;
+        const style = window.getComputedStyle(el);
 
-        rect.addEventListener('click', (event) => {
-            event.stopPropagation();
-            event.preventDefault();
+        // Check if the element is visible (not display: none, not visibility: hidden, and inside viewport)
+        if (
+            rectBounds.width > 0 &&
+            rectBounds.height > 0 &&
+            rectBounds.top >= 0 &&
+            rectBounds.left >= 0 &&
+            rectBounds.bottom <= window.innerHeight &&
+            rectBounds.right <= window.innerWidth &&
+            style.visibility !== 'hidden' &&
+            style.display !== 'none'
+        ) {
+            const testIdValue = el.getAttribute('data-testid');
 
-            if (testIdValue) {
-                navigator.clipboard.writeText(testIdValue).then(() => {
-                    rect.textContent = 'Copied!';
-                    setTimeout(() => {
-                        rect.textContent = testIdValue;
-                    }, 500);
-                });
+            const rect = document.createElement('div');
+            rect.className = 'testkit-testID-display';
+            rect.textContent = testIdValue;
+            rect.style.position = 'absolute';
+            rect.style.backgroundColor = 'red';
+            rect.style.color = 'white';
+            rect.style.padding = '5px 10px';
+            rect.style.borderRadius = '4px';
+            rect.style.fontSize = '12px';
+            rect.style.cursor = 'pointer';
+            rect.style.zIndex = '9999';
+            rect.style.pointerEvents = 'auto';
+            rect.style.transition = 'opacity 0.2s';
+            rect.style.opacity = '0.8';
+
+            const rectWidth = rect.offsetWidth;
+            const viewportWidth = window.innerWidth;
+            if (rectBounds.right + 10 + rectWidth > viewportWidth) {
+                rect.style.left = `${window.scrollX + rectBounds.left - rectWidth - 10}px`;
+            } else {
+                rect.style.left = `${window.scrollX + rectBounds.right + 10}px`;
             }
-        });
+            rect.style.top = `${window.scrollY + rectBounds.top}px`;
 
-        document.body.appendChild(rect);
+            rect.addEventListener('click', (event) => {
+                event.stopPropagation();
+                event.preventDefault();
+
+                if (testIdValue) {
+                    navigator.clipboard.writeText(testIdValue).then(() => {
+                        rect.textContent = 'Copied!';
+                        setTimeout(() => {
+                            rect.textContent = testIdValue;
+                        }, 500);
+                    });
+                }
+            });
+            document.body.appendChild(rect);
+        }
     });
 }
 
