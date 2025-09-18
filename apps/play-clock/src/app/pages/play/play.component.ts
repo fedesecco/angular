@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, inject, OnDestroy, signal } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { filter, interval, startWith, withLatestFrom } from 'rxjs';
 
 @Component({
     selector: 'app-play',
-    imports: [CommonModule, ButtonModule, TranslocoModule],
+    imports: [ButtonModule, TranslocoModule],
     templateUrl: './play.component.html',
     styleUrl: './play.component.scss'
 })

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -11,14 +11,13 @@ import { SharedService } from '../../services/shared.service';
     selector: 'tk-home',
     standalone: true,
     imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        FormsModule,
-        InputTextModule,
-        FloatLabelModule,
-        ButtonModule,
-        HeaderComponent,
-    ],
+    ReactiveFormsModule,
+    FormsModule,
+    InputTextModule,
+    FloatLabelModule,
+    ButtonModule,
+    HeaderComponent
+],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
 })
