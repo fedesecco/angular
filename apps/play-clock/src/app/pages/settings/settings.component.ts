@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,16 +13,15 @@ import { TableModule } from 'primeng/table';
 @Component({
     selector: 'app-settings',
     imports: [
-        CommonModule,
-        TranslocoModule,
-        ButtonModule,
-        InputTextModule,
-        FormsModule,
-        ReactiveFormsModule,
-        InputNumberModule,
-        TableModule,
-        InputSwitchModule,
-    ],
+    TranslocoModule,
+    ButtonModule,
+    InputTextModule,
+    FormsModule,
+    ReactiveFormsModule,
+    InputNumberModule,
+    TableModule,
+    InputSwitchModule
+],
     templateUrl: './settings.component.html',
     styleUrl: './settings.component.scss'
 })

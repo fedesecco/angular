@@ -1,72 +1,73 @@
 {
-  "name": "ps-test",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "prefix": "pst",
-  "sourceRoot": "apps/ps-test/src",
-  "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/apps/ps-test",
-        "index": "apps/ps-test/src/index.html",
-        "browser": "apps/ps-test/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "apps/ps-test/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
-        "assets": ["apps/ps-test/src/favicon.ico", "apps/ps-test/src/assets"],
-        "styles": ["apps/ps-test/src/styles.scss"],
-        "scripts": []
-      },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+    "name": "ps-test",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "prefix": "pst",
+    "sourceRoot": "apps/ps-test/src",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@angular-devkit/build-angular:application",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/ps-test",
+                "index": "apps/ps-test/src/index.html",
+                "browser": "apps/ps-test/src/main.ts",
+                "polyfills": ["zone.js"],
+                "tsConfig": "apps/ps-test/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
+                "assets": ["apps/ps-test/src/favicon.ico", "apps/ps-test/src/assets"],
+                "styles": ["apps/ps-test/src/styles.scss"],
+                "scripts": []
             },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+            "configurations": {
+                "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "500kb",
+                            "maximumError": "1mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "2kb",
+                            "maximumError": "4kb"
+                        }
+                    ],
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "optimization": false,
+                    "extractLicenses": false,
+                    "sourceMap": true
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "options": {
+                "port": 5000
+            },
+            "configurations": {
+                "production": {
+                    "buildTarget": "ps-test:build:production"
+                },
+                "development": {
+                    "buildTarget": "ps-test:build:development"
+                }
+            },
+            "defaultConfiguration": "development",
+            "continuous": true
+        },
+        "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+                "buildTarget": "ps-test:build"
             }
-          ],
-          "outputHashing": "all"
         },
-        "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true
+        "lint": {
+            "executor": "@nx/eslint:lint"
         }
-      },
-      "defaultConfiguration": "production"
-    },
-    "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "options": {
-        "port": 5000
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "ps-test:build:production"
-        },
-        "development": {
-          "buildTarget": "ps-test:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "ps-test:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     }
-  }
 }
