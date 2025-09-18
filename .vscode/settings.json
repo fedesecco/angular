@@ -8,5 +8,6 @@
     },
     "files.associations": {
         "*.scss": "tailwindcss"
-    }
+    },
+    "files.eol": "\n"
 }
