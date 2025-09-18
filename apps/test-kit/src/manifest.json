@@ -1,6 +1,6 @@
 {
     "name": "TestKit",
-    "version": "1.0",
+    "version": "1.0.1",
     "description": "A series of tools to ease the automated testing experience from the browser",
     "manifest_version": 3,
     "permissions": ["activeTab", "scripting"],
