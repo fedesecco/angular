@@ -44,3 +44,6 @@ Thumbs.db
 apps/subreddit-game/env.ts
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
+
+# secrets
+.env
